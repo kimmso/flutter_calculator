@@ -1,0 +1,47 @@
+import 'package:get/get.dart';
+
+enum Calculate {PLUS, MINUS, MULTIPLY, DIVIDE, NONE}
+
+class CalculatorController extends GetxController {
+    RxString _result = '0'.obs;
+    num num1 = 0;
+    num num2 = 0;
+    Calculate status = Calculate.NONE;
+// 애니메이션을 위한 불리언 변수 추가
+    bool pushCalculateBtn = false;
+    Rxbool _pushPlus = false.obs;
+    Rxbool _pushMinus = false.obs;
+    Rxbool _pushMultiply = false.obs;
+    Rxbool _pushDivide = false.obs;
+
+    String get result => _result.value;
+
+// getter 추가
+    bool get plus => _pushPlus.value;
+    bool get minus => _pushMinus.value;
+    bool get multiply => _pushMultiply.value;
+    bool get divide => _pushDivide.value;
+
+// 숫자 입력
+    void pushNumberBtn(String value) {
+        if(_result.value[0] == '0' && _result.value.length == 1) {
+            _result('');
+        }
+        _result.value += value;
+    }
+// 소수점 입력
+    void pushDotBtn() {
+        if (_result.value.contains('.')) {
+            return;
+        }
+        _result.value += '.';
+    }
+
+// 나누기 버튼 클릭 이벤트
+    void pushDivideBtn() {
+        status = Calculate.DIVIDE;
+        pushCalculateBtnProgress(status);
+        
+    }
+
+}
