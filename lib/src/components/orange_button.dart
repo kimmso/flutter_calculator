@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import '../constants/button_color.dart';
 import '../constants/button_size.dart';
